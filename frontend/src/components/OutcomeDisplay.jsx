@@ -22,78 +22,49 @@ export default function OutcomeDisplay({ outcome }) {
     payment_completed: {
       icon: "✅",
       label: "Payment Completed",
-      color: "outcome-success",
-      bgColor: "#d4edda",
+      className: "outcome-success",
     },
     promise_to_pay: {
       icon: "📅",
       label: "Promise to Pay",
-      color: "outcome-info",
-      bgColor: "#d1ecf1",
+      className: "outcome-info",
     },
     callback_requested: {
       icon: "📞",
       label: "Callback Scheduled",
-      color: "outcome-warning",
-      bgColor: "#fff3cd",
+      className: "outcome-warning",
     },
     dispute: {
       icon: "⚠️",
       label: "Dispute Raised",
-      color: "outcome-danger",
-      bgColor: "#f8d7da",
+      className: "outcome-danger",
     },
     unable_to_pay: {
       icon: "❌",
       label: "Unable to Pay",
-      color: "outcome-secondary",
-      bgColor: "#e2e3e5",
+      className: "outcome-secondary",
     },
   };
 
   const config = outcomeConfig[outcome.status] || outcomeConfig.unable_to_pay;
 
   return (
-    <div
-      className="outcome-badge"
-      style={{
-        backgroundColor: config.bgColor,
-        border: `2px solid ${config.color}`,
-        borderRadius: "8px",
-        padding: "12px",
-        margin: "10px 0",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-      }}
-    >
-      <div
-        style={{
-          fontSize: "14px",
-          fontWeight: "600",
-          marginBottom: "8px",
-        }}
-      >
+    <div className={`outcome-badge ${config.className}`}>
+      <div className="outcome-header">
         {config.icon} {config.label}
       </div>
 
       {outcome.promisedDate && (
-        <div style={{ fontSize: "13px", marginBottom: "6px" }}>
+        <div className="outcome-date">
           📅 <strong>Date:</strong> {outcome.promisedDate}
         </div>
       )}
 
-      <div style={{ fontSize: "12px", color: "#666" }}>
+      <div className="outcome-reason">
         📝 {outcome.reason}
       </div>
 
-      <div
-        style={{
-          fontSize: "11px",
-          color: "#999",
-          marginTop: "6px",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
+      <div className="outcome-footer">
         <span>Confidence: {(outcome.confidence * 100).toFixed(0)}%</span>
         <span>Method: {outcome.detectionMethod}</span>
       </div>
