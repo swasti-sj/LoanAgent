@@ -12,7 +12,7 @@ export function useWebSocket() {
       return
     }
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'ws://localhost:8080'
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
     console.log(`🔗 Attempting to connect to ${backendUrl}`)
 
     try {
